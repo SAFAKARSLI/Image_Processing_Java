@@ -41,7 +41,6 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
 
 
         ImageIcon icon = new ImageIcon(img);
-        JScrollPane scrollPane = new JScrollPane( new JLabel(icon));
         setLayout(null);
         setSize(800,600);
         JButton button = new JButton("Done");
@@ -69,11 +68,8 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
         lbl.setIcon(icon);
         lbl.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
-
-        getContentPane().add(scrollPane);
         add(lbl);
         add(button);
-
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Fullscreen initially
@@ -81,8 +77,6 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
 
         addMouseListener(this);
         addMouseMotionListener(this);
-
-
 
     }
 
