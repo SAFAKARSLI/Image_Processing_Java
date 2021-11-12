@@ -19,6 +19,7 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
 
     List<Point> nodes = new LinkedList<>();
     Rectangle selectedArea;
+    Polygon selectedAreaInShape;
     BufferedImage img;
     BufferedImage output;
 
@@ -66,6 +67,7 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
 
             this.output = createCopyOfInputImage(this.img);
             getSmallestPossibleRect(this.nodes);
+            makePolygon(nodes);
             processImage(this.img, selectedArea);
 
 
@@ -86,6 +88,18 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
         addMouseListener(this);
         addMouseMotionListener(this);
 
+    }
+
+    private void makePolygon(List<Point> nodes) {
+        int[] xPoints = new int[nodes.size()];
+        int[] yPoints = new int[nodes.size()];
+
+        for(int i = 0; i<nodes.size(); i++) {
+            xPoints[i] = nodes.get(i).x - 7;
+            yPoints[i] = nodes.get(i).y - 30;
+        }
+
+        this.selectedAreaInShape = new Polygon(xPoints, yPoints, nodes.size());
     }
 
     private BufferedImage createCopyOfInputImage(BufferedImage inputImage){
@@ -117,7 +131,7 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
             for (int x = 0; x < width; x++)
             {
 
-                if(rect.contains(x,y)) {
+                if(selectedAreaInShape.contains(x,y)) {
                     int p = img.getRGB(x,y);
 
                     int a = (p>>24)&0xff;
