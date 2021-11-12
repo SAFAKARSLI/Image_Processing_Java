@@ -1,7 +1,9 @@
 package com.company;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.Line;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -38,11 +40,16 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
         }
 
 
-
-
-        ImageIcon icon = new ImageIcon(img);
         setLayout(null);
         setSize(800,600);
+
+//        // Get scaled form of the input image in order to apply the algorithm properly
+//        int screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+//        int screenHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+//        Image scaledImg = img.getScaledInstance(screenWidth,screenHeight, Image.SCALE_SMOOTH);
+
+        ImageIcon icon = new ImageIcon(img);
+
         JButton button = new JButton("Done");
         button.setBounds(getWidth()/2,getHeight()-50, 100, 30);
         button.addActionListener(e -> {
@@ -55,6 +62,7 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
                     lastNode.x, lastNode.y,
                     firstNode.x, firstNode.y
             );
+
 
             this.output = createCopyOfInputImage(this.img);
             getSmallestPossibleRect(this.nodes);
@@ -149,13 +157,13 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
         for(Point node: nodes) {
 
             if(node.y < top.y) {
-                top = node; // Determine Top
+                top = node; // Top Node of the Rect
             } if (node.y > bottom.y) {
-                bottom = node; // Determine Bottom
+                bottom = node; // Bottom Node of the Rect
             } if (node.x > right.x) {
-                right = node; // Determine Rigth
+                right = node; // Rigth Node of the Rect
             } if (node.x < left.x) {
-                left = node; // Determine Left
+                left = node; // Left Node of the Rect
             }
 
         }
