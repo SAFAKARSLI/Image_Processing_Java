@@ -1,9 +1,7 @@
 package com.company;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.Line;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -13,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MakingPolylines extends JFrame implements MouseListener, MouseMotionListener {
+public class ImageProcessing extends JFrame implements MouseListener, MouseMotionListener {
 
     int x, y;
 
@@ -25,11 +23,11 @@ public class MakingPolylines extends JFrame implements MouseListener, MouseMotio
 
     public static void main(String args[]) throws IOException {
 
-        new MakingPolylines();
+        new ImageProcessing();
 
     }
 
-    public MakingPolylines() {
+    public ImageProcessing() {
 
         Scanner scan = new Scanner(System.in);
 
